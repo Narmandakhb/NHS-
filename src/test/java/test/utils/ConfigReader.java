@@ -1,4 +1,4 @@
-package utils;
+package test.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
