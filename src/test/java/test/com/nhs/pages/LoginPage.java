@@ -23,9 +23,12 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(text(),'Sign in')]")
     WebElement signButton;
 
-    public void signIn(String userName, String password){
-        this.usernameField.sendKeys(userName);
-        this.passwordField.sendKeys(password);
+    public void signIn(String userName, String password) throws InterruptedException {
+        Thread.sleep(500);
+        usernameField.sendKeys(userName);
+        Thread.sleep(500);
+        passwordField.sendKeys(password);
+        Thread.sleep(500);
         signButton.click();
     }
 }

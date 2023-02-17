@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/nhs.feature",
-        glue = "test/com/nhs/stepDefinition/LoginPageStepDef.java",
+        glue = "test/com/nhs/stepDefinition",
         dryRun = false,
-        tags = "login",
+        tags = "@Regression",
         plugin = {"pretty", "html:target/uiReport.html", "rerun:target/uiFailedTests.txt"}
 
 
