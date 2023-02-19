@@ -6,13 +6,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/LoginPage.feature",
+        features = "src/test/resources/Dashboard.feature",//content root
         glue = "test/com/nhs/stepDefinition",
         dryRun = false,
-        tags = "@Regression",
+        tags = "@Smoke",
         plugin = {"pretty", "html:target/uiReport.html", "rerun:target/uiFailedTests.txt"}
 
 
 )
-public class Runner {
+public class DashBoardRunner {
 }
