@@ -11,12 +11,12 @@ import java.util.Set;
 public class BrowserUtils {
     //Browser utils is a location for the reusable methods.
     //Advantage:1-You do not need to repeat yourself.
-        //      2-Less amount of code
-      //        3-Less amount of time(*)
-    public static void selectBy(WebElement element,String value,String methodName){
-        Select select =new Select(element);
+    //      2-Less amount of code
+    //        3-Less amount of time(*)
+    public static void selectBy(WebElement element, String value, String methodName) {
+        Select select = new Select(element);
 
-        switch (methodName){
+        switch (methodName) {
 
             case "text":
                 select.selectByVisibleText(value);
@@ -32,51 +32,57 @@ public class BrowserUtils {
         }
     }
 
-    public static String getText(WebElement element){
+    public static String getText(WebElement element) {
         return element.getText().trim();
     }
 
-    public static String getTitleWithJS(WebDriver driver){
-        JavascriptExecutor js= (JavascriptExecutor) driver;
+    public static String getTitleWithJS(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         return js.executeScript("return document.title").toString();
     }
 
-    public static void clickWithJS(WebDriver driver,WebElement element){
-        JavascriptExecutor js= (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click()",element);
+    public static void clickWithJS(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click()", element);
     }
 
-    public static void scrollWithJS(WebDriver driver,WebElement element){
-        JavascriptExecutor js= (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true)",element);
+    public static void scrollWithJS(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true)", element);
     }
 
-    public static void switchByID(WebDriver driver,String mainId){
-        Set<String> allPageIds=driver.getWindowHandles();
-        for(String id:allPageIds){
-            if(!id.equals(mainId)){
+    public static void switchByID(WebDriver driver, String mainId) {
+        Set<String> allPageIds = driver.getWindowHandles();
+        for (String id : allPageIds) {
+            if (!id.equals(mainId)) {
                 driver.switchTo().window(id);
             }
         }
     }
-    public static void switchByTitle(WebDriver driver,String title){
-        Set<String> allIds=driver.getWindowHandles();
-        for(String id:allIds){
+
+    public static void switchByTitle(WebDriver driver, String title) {
+        Set<String> allIds = driver.getWindowHandles();
+        for (String id : allIds) {
             driver.switchTo().window(id);
-            if(driver.getTitle().contains(title)){
+            if (driver.getTitle().contains(title)) {
                 break;
             }
         }
     }
-    public static void getScreenShot(WebDriver driver,String packageName){
-        File file=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        String location=System.getProperty("user.dir")+"/src/java/screenshot"+packageName;
+
+    public static void getScreenShot(WebDriver driver, String packageName) {
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String location = System.getProperty("user.dir") + "/src/java/screenshot" + packageName;
 
         try {
-            FileUtils.copyFile(file,new File(location+ System.currentTimeMillis()));
+            FileUtils.copyFile(file, new File(location + System.currentTimeMillis()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         //System.currentTimeMillis will make the data unique all the time.
+    }
+
+    public static String getTextMethod(WebElement element) {
+        return element.getText().trim();
     }
 }
